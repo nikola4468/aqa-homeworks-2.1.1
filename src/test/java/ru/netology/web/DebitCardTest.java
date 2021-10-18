@@ -1,3 +1,4 @@
+package ru.netology.web;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 
