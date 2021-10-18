@@ -36,14 +36,17 @@ public class DebitCardTest {
     void shouldSubmitRequestBadName() {
         SelenideElement form = $(".form_theme_alfa-on-white");
         form.$("[data-test-id=name] input").setValue("Vasiliy");
+        form.$("[data-test-id=phone] input").setValue("+79270000000");
+        form.$("[data-test-id=agreement]").click();
         form.$(".button__content").click();
         $(".input_invalid .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
     }
 
     @Test
-    void shouldSubmitRequestBadTelNoName() {
+    void shouldSubmitRequestNoName() {
         SelenideElement form = $(".form_theme_alfa-on-white");
-        form.$("[data-test-id=phone] input").setValue("879270000000");
+        form.$("[data-test-id=phone] input").setValue("+79270000000");
+        form.$("[data-test-id=agreement]").click();
         form.$(".button__content").click();
         $(".input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
@@ -53,6 +56,7 @@ public class DebitCardTest {
         SelenideElement form = $(".form_theme_alfa-on-white");
         form.$("[data-test-id=name] input").setValue("Василий Иванов-Петров");
         form.$("[data-test-id=phone] input").setValue("879270000000");
+        form.$("[data-test-id=agreement]").click();
         form.$(".button__content").click();
         $(".input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
@@ -61,6 +65,7 @@ public class DebitCardTest {
     void shouldSubmitRequestNoTel() {
         SelenideElement form = $(".form_theme_alfa-on-white");
         form.$("[data-test-id=name] input").setValue("Василий Иванов-Петров");
+        form.$("[data-test-id=agreement]").click();
         form.$(".button__content").click();
         $(".input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
